@@ -9,24 +9,17 @@ import {
 import OAuth from '../components/OAuth';
 
 export default function SignIn() {
-
   const [formData, setFormData] = useState({});
-  const {loading, error} = useSelector((state)=> state.user);
-
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-
-  //handle change in input fields
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
-
-   //handle submit 
-   const handleSubmit = async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(signInStart());
@@ -40,16 +33,15 @@ export default function SignIn() {
       const data = await res.json();
       console.log(data);
       if (data.success === false) {
-       dispatch(signInFailure(data.message));
+        dispatch(signInFailure(data.message));
         return;
       }
-     dispatch(signInSuccess(data.message));
+      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-     dispatch(signInFailure(error.message));
+      dispatch(signInFailure(error.message));
     }
-  }
-
+  };
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
