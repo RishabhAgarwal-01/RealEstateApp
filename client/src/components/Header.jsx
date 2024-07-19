@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 function Header() {
 
-  //redux state current user
+  //redux state current user from the redux store
   const {currentUser} = useSelector((state)=> state.user)
   
   const [searchTerm, setSearchTerm] = useState('');

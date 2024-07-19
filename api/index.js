@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,8 @@ const app = express();
 //middleware for allowing the app to send the JSON data to the backend expres server 
 app.use(express.json());
 
+//middleware to parse the cookies 
+app.use(cookieParser());
 //server listening
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
