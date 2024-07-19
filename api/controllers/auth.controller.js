@@ -8,6 +8,12 @@ import jwt from "jsonwebtoken";
 export const signup = async (req, res, next) => {
   //extract the info
   const { username, email, password } = req.body; 
+
+  //check for all fields
+  if (!username || !email || !password) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
   //hash the password using bcrypt js
   const hashedPassword = bcryptjs.hashSync(password, 10); 
   //create a new user
@@ -99,3 +105,12 @@ export const google = async(req, res, next)=>{
     next(error);
   }
 }
+
+export const signOut = async (req, res, next) => {
+  try {
+    res.clearCookie('access_token');
+    res.status(200).json('User has been logged out!');
+  } catch (error) {
+    next(error);
+  }
+};
