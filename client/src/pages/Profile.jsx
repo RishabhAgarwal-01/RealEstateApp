@@ -18,6 +18,8 @@ import {
 } from '../redux/user/userSlice';
 
 function Profile() {
+
+  //useRef hook for the image reference 
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);

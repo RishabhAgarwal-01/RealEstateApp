@@ -43,7 +43,10 @@ export const updateUser = async (req, res, next)=>{
   }
 }
 
+//delete user fucntionality
 export const deleteUser = async (req, res, next) => {
+
+  //check for user id
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only delete your own account!'));
   try {

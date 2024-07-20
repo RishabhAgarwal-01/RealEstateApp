@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import cookieParser from 'cookie-parser';
+import listingRouter from "./routes/listing.route.js";
+
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -33,6 +35,8 @@ app.listen(PORT, ()=>{
 app.use('/api/user', userRouter);
 //auth routes
 app.use('/api/auth', authRouter);
+//listing route
+app.use('/api/listing', listingRouter);
 
 //middleware for the error handling
 app.use((err,req, res, next)=>{

@@ -7,6 +7,7 @@ const router = express.Router();
 
 //route to update the user detail after authorization
 router.post('/update/:id',verifyToken, updateUser);
+//delete user route
 router.delete('/delete/:id',verifyToken, deleteUser);
 
 export default router;
