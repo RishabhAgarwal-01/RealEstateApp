@@ -11,6 +11,7 @@ import CreateListing from './pages/CreateListing.jsx'
 import UpdateListing from './pages/UpdateListing.jsx'
 import Listing from './pages/Listing.jsx'
 import { useEffect } from 'react'
+import Search from './pages/Search.jsx'
 function App() {
   return (
   <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
        <Route path='/sign-in' element={<SignIn/>} />
        <Route path='/sign-up' element={<SignUp/>} />
        <Route path='/about' element={<About/>} />
+       <Route path='/search' element={<Search/>} />
        <Route path='/listing/:listingId' element={<Listing/>}/>
        <Route element={<PrivateRoute/>}>
           <Route path='/profile' element={<Profile/>} />

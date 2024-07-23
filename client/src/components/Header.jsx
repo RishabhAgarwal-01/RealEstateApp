@@ -12,6 +12,23 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
+
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('searchTerm', searchTerm)
+    const searchQuery= urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  }
+
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('serachTerm');
+    if(searchTermFromUrl){
+      setSearchTerm(searchTermFromUrl);
+    }
+  },[location.search]);
+
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
@@ -19,11 +36,13 @@ function Header() {
           <span className="text-slate-500">Dream</span>
           <span className="text-slate-700">Dwelling</span>
         </h1>
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+        <form className="bg-slate-100 p-3 rounded-lg flex items-center" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="search.."
             className="bg-transparent focus:outline-none w-24 sm:w-64"
+            value={searchTerm}
+            onChange={(e)=> setSearchTerm(e.target.value)}
           />
           <button>
             <FaSearch className="text-slate-600" />
