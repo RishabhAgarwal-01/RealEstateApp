@@ -49,39 +49,39 @@ function Home() {
   return (
     <div>
       {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>perfect</span>
+      <div className="flex flex-col gap-6 px-3 lg:p-28 max-w-6xl mx-auto">
+        <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
+          Find your next <span className="text-slate-500">perfect</span>
           <br />
           place with ease
         </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
-          Dream Dwelling is the best place to find your next perfect place to
-          live.
+        <div className="text-gray-500 text-sm sm:text-base lg:text-lg">
+          Dream Dwelling is the best place to find your next perfect place to live.
           <br />
           We have a wide range of properties for you to choose from.
         </div>
-        <Link
-          to={'/search'}
-          className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
-        >
-          Let's get started...
-        </Link>
+        <div className="border border-slate-300 bg-slate-100 w-full flex justify-center max-w-sm mx-auto py-2 rounded-md shadow-lg hover:bg-slate-200">
+          <Link
+            to="/search"
+            className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
+          >
+            Let's get started...
+          </Link>
+        </div>
       </div>
 
       {/* swiper */}
-      <Swiper navigation>
+      <Swiper navigation className="mt-6">
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
-            <SwiperSlide>
+            <SwiperSlide key={listing._id}>
               <div
                 style={{
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
                 }}
-                className='h-[500px]'
-                key={listing._id}
+                className="h-[300px] lg:h-[500px] rounded-md shadow-md"
               ></div>
             </SwiperSlide>
           ))}

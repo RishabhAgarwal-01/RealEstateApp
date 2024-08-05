@@ -31,49 +31,61 @@ function Header() {
 
   return (
     <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+      <div className="flex flex-col sm:flex-row justify-between items-center max-w-6xl mx-auto p-3 space-y-3 sm:space-y-0">
+        <Link to={'/'}>
+        <h1 className="font-bold text-lg sm:text-xl flex flex-wrap cursor-pointer">
           <span className="text-slate-500">Dream</span>
           <span className="text-slate-700">Dwelling</span>
         </h1>
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center" onSubmit={handleSubmit}>
+        </Link>
+        <form
+          className="bg-slate-100 p-2 rounded-lg flex items-center w-full sm:w-auto"
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             placeholder="search.."
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
+            className="bg-transparent focus:outline-none w-full sm:w-64"
             value={searchTerm}
-            onChange={(e)=> setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button>
-            <FaSearch className="text-slate-600" />
+          <button className="bg-slate-300 hover:bg-slate-400 text-slate-600 p-2 rounded-lg ml-2">
+            <FaSearch />
           </button>
         </form>
-        <ul className="flex gap-4">
+        <ul className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto items-center">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="bg-slate-300 hover:bg-slate-400 text-slate-700 py-2 px-4 rounded-lg text-center w-full sm:w-auto">
               Home
             </li>
           </Link>
+          <Link to="/search">
+            <li className="bg-slate-300 hover:bg-slate-400 text-slate-700 py-2 px-4 rounded-lg text-center w-full sm:w-auto">
+              Search
+            </li>
+          </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="bg-slate-300 hover:bg-slate-400 text-slate-700 py-2 px-4 rounded-lg text-center w-full sm:w-auto">
               About
             </li>
           </Link>
-          <Link to='/profile'>
+          <Link to="/profile">
             {currentUser ? (
               <img
-                className='rounded-full h-7 w-7 object-cover'
+                className="rounded-full h-10 w-10 object-cover border border-slate-300"
                 src={currentUser.avatar}
-                alt='profile'
+                alt="profile"
               />
             ) : (
-              <li className=' text-slate-700 hover:underline'> Sign in</li>
+              <li className="bg-slate-300 hover:bg-slate-400 text-slate-700 py-2 px-4 rounded-lg text-center w-full sm:w-auto">
+                Sign in
+              </li>
             )}
           </Link>
         </ul>
       </div>
     </header>
   );
-}
+};
 
 export default Header;
